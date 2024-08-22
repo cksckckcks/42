@@ -435,6 +435,30 @@ void	put_images(t_vars *vars, char **map, t_image_data **images)
 	mlx_destroy_image(vars->mlx, (*images)->img_P->ptr);
 }
 
+void	get_row_col_p(t_vars **vars)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while ((*vars)->map[i])
+	{
+		j = 0;
+		while ((*vars)->map[i][j])
+		{
+			if ((*vars)->map[i][j] == 'P')
+			{
+				(*vars)->x = i;
+				(*vars)->y = j;
+			}
+			j++;
+		}
+		i++;
+	}
+	(*vars)->row = i;
+	(*vars)->col = j;
+}
+
 int	main(int argc, char **argv)
 {
 	t_vars			*vars;
@@ -449,9 +473,9 @@ int	main(int argc, char **argv)
 		print_error("./so_long filename.ber\n");
 
 	vars->map = map_path_check(argv[1]);
-
+	get_row_col_p(&vars);
 	vars->mlx = mlx_init();
-	vars->win = mlx_new_window(vars->mlx, 500, 500, "test window!!");
+	vars->win = mlx_new_window(vars->mlx, vars->col * 50, vars->row * 50, "test window!!");
 
 	put_images(vars, vars->map, &imgs);
 	mlx_hook(vars->win, 2, 1L<<0, press_key, &vars);
