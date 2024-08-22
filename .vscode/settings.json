@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"mlx.h": "c",
+		"libft.h": "c",
+		"iostream": "cpp",
+		"so_long.h": "c"
+	}
+}
