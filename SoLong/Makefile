@@ -1,9 +1,15 @@
-SRCS =		so_long.c
+SRCS =		so_long.c \
+			so_long_free_func.c \
+			so_long_get_func.c \
+			so_long_main.c \
+			so_long_map_check.c \
+			so_long_map_check2.c \
+			so_long_utils.c
 
 HEADER = so_long.h
 
 CC = cc
-CFLAGS = -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address 
 LIB_DIR = libft
 MLX_DIR = mlx
 
